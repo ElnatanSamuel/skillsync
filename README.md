@@ -71,7 +71,7 @@ SkillSync is a comprehensive application for tracking and improving your skills,
    - Set the root directory to `client`
    - Add the following environment variables:
      - `VITE_API_URL`: Your deployed backend URL with `/api` at the end
-       Example: `https://skillsync-server.vercel.app/api`
+       Example: `https://skillsync-back.vercel.app/api`
 
 2. Deploy your project
 

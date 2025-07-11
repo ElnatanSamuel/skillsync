@@ -6,7 +6,7 @@ const AuthContext = createContext();
 
 // API URL - use environment variable or default to production URL
 const API_URL =
-  import.meta.env.VITE_API_URL || "https://skillsync-server.vercel.app/api";
+  import.meta.env.VITE_API_URL || "https://skillsync-back.vercel.app/api";
 
 // Hook to use the auth context
 export const useAuth = () => {

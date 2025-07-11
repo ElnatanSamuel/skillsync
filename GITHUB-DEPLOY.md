@@ -70,7 +70,7 @@ git push -u origin main
 - Set the root directory to "client"
 - Add environment variables:
   - `VITE_API_URL`: Your deployed backend URL with "/api" at the end
-    (e.g., "https://skillsync-server.vercel.app/api")
+    (e.g., "https://skillsync-back.vercel.app/api")
 
 7. Deploy
 
