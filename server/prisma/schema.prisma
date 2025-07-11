@@ -8,26 +8,32 @@ datasource db {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  email    String @unique
-  password String
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
   createdAt DateTime @default(now())
-  goals    Goal[]
+  goals     Goal[]
 }
 
 model Goal {
-  id        Int      @id @default(autoincrement())
-  title     String
-  userId    Int
-  user      User     @relation(fields: [userId], references: [id])
-  sessions  Session[]
+  id               Int       @id @default(autoincrement())
+  title            String
+  userId           Int
+  user             User      @relation(fields: [userId], references: [id])
+  sessions         Session[]
+  frequency        Int       @default(0) // Number of days between sessions (0 = no schedule)
+  lastCompleted    DateTime? 
+  nextDueDate      DateTime? 
 }
 
 model Session {
   id        Int      @id @default(autoincrement())
-  date      DateTime
-  duration  Int
-  completed Boolean  @default(false)
-  goalId    Int
   goal      Goal     @relation(fields: [goalId], references: [id])
+  goalId    Int
+  title     String   @default("")
+  note      String   @default("")
+  duration  Int
+  date      DateTime
+  completed Boolean
+  createdAt DateTime @default(now())
 }

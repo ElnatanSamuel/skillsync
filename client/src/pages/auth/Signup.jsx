@@ -1,27 +1,31 @@
-import AuthForm from "../../components/auth/AuthForm";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import AuthForm from "../../components/auth/AuthForm";
 
 export default function Signup() {
   const navigate = useNavigate();
+  const [error, setError] = useState(null);
+  const { signup, loading } = useAuth();
 
   const handleSignup = async ({ email, password }) => {
-    try {
-      const res = await fetch("http://localhost:5000/api/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+    setError(null);
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Signup failed");
+    const result = await signup(email, password);
 
-      console.log("Signup success:", data);
-      localStorage.setItem("token", data.token);
+    if (result.success) {
       navigate("/dashboard");
-    } catch (err) {
-      alert(err.message);
+    } else {
+      setError(result.message);
     }
   };
 
-  return <AuthForm type="signup" onSubmit={handleSignup} />;
+  return (
+    <AuthForm
+      type="signup"
+      onSubmit={handleSignup}
+      loading={loading}
+      error={error}
+    />
+  );
 }
