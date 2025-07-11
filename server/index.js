@@ -15,6 +15,7 @@ app.use(
       "http://localhost:5173",
       "https://skillsync-client.vercel.app",
       "https://skillsync.vercel.app",
+      "https://skillsync-front.vercel.app",
     ],
     credentials: true,
   })

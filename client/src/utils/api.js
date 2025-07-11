@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Get the API URL from environment or use production URL
 const apiUrl =
-  import.meta.env.VITE_API_URL || "https://skillsync-server.vercel.app/api";
+  import.meta.env.VITE_API_URL || "https://skillsync-back.vercel.app/api";
 
 // Create a custom instance of axios
 const api = axios.create({
