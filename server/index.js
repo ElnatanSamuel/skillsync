@@ -8,21 +8,15 @@ const goalRoutes = require("./routes/goal");
 dotenv.config();
 const app = express();
 
-// Updated CORS to allow both local development and production URLs
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "https://skillsync-client.vercel.app",
-      "https://skillsync.vercel.app",
-      "https://skillsync-front.vercel.app",
-    ],
-    credentials: true,
-  })
-);
+// Handle OPTIONS preflight requests
+app.options("*", cors());
+
+// CORS middleware
+app.use(cors());
 
 app.use(express.json());
 
+// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/sessions", sessionRoutes);
 app.use("/api/goals", goalRoutes);
