@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom";
 // Create context
 const AuthContext = createContext();
 
+// API URL - use environment variable or default to production URL
+const API_URL =
+  import.meta.env.VITE_API_URL || "https://skillsync-server.vercel.app/api";
+
 // Hook to use the auth context
 export const useAuth = () => {
   return useContext(AuthContext);
@@ -30,7 +34,7 @@ export const AuthProvider = ({ children }) => {
 
       try {
         // Verify token with server
-        const response = await fetch("http://localhost:5000/api/auth/me", {
+        const response = await fetch(`${API_URL}/auth/me`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -60,7 +64,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const response = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -92,7 +96,7 @@ export const AuthProvider = ({ children }) => {
   const signup = async (email, password) => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/api/auth/signup", {
+      const response = await fetch(`${API_URL}/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
